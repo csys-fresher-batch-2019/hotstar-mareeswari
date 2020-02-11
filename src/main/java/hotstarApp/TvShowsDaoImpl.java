@@ -1,6 +1,7 @@
 package hotstarApp;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -13,14 +14,14 @@ public class TvShowsDaoImpl implements TvShowsDao{
 
 	
 	public List<TvShows> allTvShowsList() throws Exception {
-		
-Connection con=DBConnection.dbConnect(); 
-		
-		Statement stmt=con.createStatement();  
-		  
-		ResultSet rs=stmt.executeQuery("select * from tv_shows");  
-
 	    List<TvShows> l=new ArrayList<TvShows>();
+
+try(Connection con=DBConnection.dbConnect(); 
+		
+		PreparedStatement stmt=con.prepareStatement("select * from tv_shows"))  
+{  
+		try(ResultSet rs=stmt.executeQuery()) 
+		{
 	    while(rs.next())  
 	    {
 	    	TvShows ts=new TvShows();
@@ -33,7 +34,11 @@ Connection con=DBConnection.dbConnect();
 	    	
 	    	l.add(ts);
 	    }
-		
+		}
+}catch (Exception e) {
+	// TODO: handle exception
+	e.printStackTrace();
+}
 		return(l);
 	
 	}

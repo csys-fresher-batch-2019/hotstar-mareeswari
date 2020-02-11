@@ -9,18 +9,19 @@ import hotstarApp.MoviesDaoImpl;
 
 
 public class MoviesByPreLanguageTest {
+	public static final LoggerUtil logger=LoggerUtil.getInstance();
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		MoviesDaoImpl ml=new MoviesDaoImpl();
-		System.out.println("********************");
-		Scanner sc=new Scanner(System.in);
+		MoviesDao ml=DAOFactory.getMoviesDao();
+		logger.debug("********************");
+		UsersDao ui=DAOFactory.getUsersDao();
 		List<Movies> l1=new ArrayList<Movies>();
-		System.out.println("Enter user id : ");
-		l1=ml.allMoviesByPreLang(Integer.parseInt(sc.nextLine()));
+		String user[]=ui.getUserDetails();
+		l1=ml.allMoviesByPreLang(Integer.parseInt(user[1]));
 		for(Movies m:l1)
 		{
-			System.out.println(m.toString());
+			logger.debug(m.toString());
 		}
 		
 	}

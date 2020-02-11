@@ -11,4 +11,5 @@ public class Users {
 	public String email;
 	public long phoneNumber;
 	public String preLanguage;
+	public String password;
 }

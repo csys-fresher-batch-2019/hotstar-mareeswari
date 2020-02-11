@@ -11,14 +11,14 @@ import hotstarApp.Movies;
 public class LastWatchingDaoImpl implements LastWatchingDao {
 
 	public Movies lastWatchedMovie(String email) throws Exception {
-		Connection con=DBConnection.dbConnect(); 
+		Movies mo=new Movies();
         String str="select * from movies where movie_id=(select last_watching_id from users_watching_details_movies where user_id=(select user_id from users where email=?)) " ;
 
-		PreparedStatement stmt= con.prepareStatement(str);
+		try(Connection con=DBConnection.dbConnect();PreparedStatement stmt= con.prepareStatement(str)){
 		
 		stmt.setString(1,email);
-		ResultSet rs=stmt.executeQuery();  
-		Movies mo=new Movies();
+		try(ResultSet rs=stmt.executeQuery()){  
+		
 		if(rs.next())  
 		    {
 		    
@@ -32,8 +32,17 @@ public class LastWatchingDaoImpl implements LastWatchingDao {
 		    	mo.dateLaunchingIntoHotstar=rs.getDate(8);
 		    	
 		    }
-		return(mo);
+		
 
+		}
+		
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return(mo);
+		
 		
 	}
 

@@ -6,18 +6,19 @@ import hotstarApp.ShowEpisodesDaoImpl;
 
 
 public class AllShowsAndEpisodesCountTest {
+	public static final LoggerUtil logger=LoggerUtil.getInstance();
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		ShowEpisodesDaoImpl tl=new ShowEpisodesDaoImpl();
-		System.out.println("\n***************************\n");
+		ShowEpisodesDao tl=DAOFactory.getShowEpisodesDao();
+		logger.debug("\n***************************\n");
 
 		HashMap<String, Integer> h=new HashMap<String, Integer>();
 		h=tl.allShowNameAndEpisodesCount();
 		for(String s:h.keySet())
 		{
 			Integer val = h.get(s);
-			System.out.println(s+","+val);
+			logger.debug(s+","+val);
 		}
 	}
 

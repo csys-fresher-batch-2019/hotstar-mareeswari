@@ -6,31 +6,33 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
+import java.util.Scanner;
 
 import hotstarApp.Movies;
 import hotstarApp.MoviesDaoImpl;
 
 
 public class AddMoviesTest {
+	public static final LoggerUtil logger=LoggerUtil.getInstance();
 public static void main(String[] args) throws Exception {
-	MoviesDaoImpl mi=new MoviesDaoImpl();
-	List<String> l=new ArrayList<String>();
-	l=Files.readAllLines(Paths.get("project.txt"));
-	
-	for(String s:l)
-	{
-		
-		String[] row=s.split(",");
+	MoviesDao mi=DAOFactory.getMoviesDao();
+	Scanner sc=new Scanner(System.in);
 		Movies m=new Movies();
-		m.setMovieName(row[0]);
-		m.setMovieType(row[1]);
-		m.setMovieLanguage(row[2]);
-		m.setMovieDirector(row[3]);
-		m.setMovieReleasedDate(Date.valueOf(row[4]));
-		m.setVideoUrl(row[5]);
+	    logger.debug("Enter movie name:");
+		m.setMovieName(sc.nextLine());
+		logger.debug("Enter movie type:");
+		m.setMovieType(sc.nextLine());
+		logger.debug("Enter movie Language:");
+		m.setMovieLanguage(sc.nextLine());
+		logger.debug("Enter movie Director:");
+		m.setMovieDirector(sc.nextLine());
+		logger.debug("Enter movie Released Date:");
+		m.setMovieReleasedDate(Date.valueOf(sc.nextLine()));
+	    logger.debug("Enter movie video url:");
+		m.setVideoUrl(sc.nextLine());
 		mi.addMovies(m);
 		
 	}
 
-}
+
 }

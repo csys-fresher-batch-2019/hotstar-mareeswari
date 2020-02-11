@@ -9,13 +9,15 @@ import hotstarApp.ShowEpisodesDaoImpl;
 
 
 public class ShowEpisodesTest {
+	public static final LoggerUtil logger=LoggerUtil.getInstance();
+
 public static void main(String[] args) throws Exception {
-	ShowEpisodesDaoImpl tl=new ShowEpisodesDaoImpl();
+	ShowEpisodesDao tl=DAOFactory.getShowEpisodesDao();
 	List<NameEpisode> l=new ArrayList<NameEpisode>();
 	l=tl.allShowNameAndEpisodes();
 	for(NameEpisode m:l)
 	{
-		System.out.println(m.toString());
+		logger.debug(m.toString());
 	}
 	
 	

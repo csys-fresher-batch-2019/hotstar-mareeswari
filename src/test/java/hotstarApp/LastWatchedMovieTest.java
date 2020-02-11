@@ -7,13 +7,18 @@ import hotstarApp.Movies;
 
 
 public class LastWatchedMovieTest {
+	public static final LoggerUtil logger=LoggerUtil.getInstance();
+
 public static void main(String[] args) throws Exception {
-	LastWatchingDaoImpl li=new LastWatchingDaoImpl();
+	LastWatchingDao li=DAOFactory.getLastWatchingDao();
+	UsersDaoImpl ui=new UsersDaoImpl();
 	Movies mo=new Movies();
 	Scanner sc=new Scanner(System.in);
-	System.out.println("Enter the user email :\n");
-	mo=li.lastWatchedMovie(sc.nextLine());
-	System.out.println(mo.toString());
+	
+	String user[]=ui.getUserDetails();
+	
+	mo=li.lastWatchedMovie(user[0]);
+     logger.debug(mo.toString());
 	sc.close();
 	
 	

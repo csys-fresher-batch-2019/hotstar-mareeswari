@@ -8,14 +8,16 @@ import hotstarApp.MoviesDaoImpl;
 
 
 public class AllMoviesListTest {
+	public static final LoggerUtil logger=LoggerUtil.getInstance();
+
 	public static void main(String args[]) throws Exception
 	{
-		MoviesDaoImpl ml=new MoviesDaoImpl();
+		MoviesDao ml=DAOFactory.getMoviesDao();
 		List<Movies> l=new ArrayList<Movies>();
 		l=ml.allMoviesList();
 		for(Movies m:l)
 		{
-			System.out.println(m.toString());
+			logger.debug(m.toString());
 		}
 		
 		
