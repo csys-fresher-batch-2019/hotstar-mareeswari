@@ -30,31 +30,43 @@ public class UsersDaoImpl implements UsersDao{
 		
 	}
 
-	public String[] getUserDetails() throws Exception {
-		// TODO Auto-generated method stub
-		List<String> l=new ArrayList<String>();
-		l=Files.readAllLines(Paths.get("register.txt"));
-		String row[]=new String[2];
-		for(String s:l)
+	public Users getUserDetails(String email) throws Exception {
+		 String str="select * from users where email=? " ;
+		  Connection con=DBConnection.dbConnect();
+		  Users u=new Users();
+		try
+		(
+
+		PreparedStatement stmt= con.prepareStatement(str))
 		{
-			
-			 row=s.split(",");
+		stmt.setString(1,email);
 		
+		try(ResultSet rs =stmt.executeQuery())
+		{
+		
+		if( rs.next())
+		{
+			u.userId=rs.getInt(1);
+			u.userName=rs.getString(2);
+			u.email=rs.getString(3);
+			u.phoneNumber=rs.getLong(4);
+			u.preLanguage=rs.getString(5);
 		}
 		
-		return row;
+		}
+		con.close();
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return u;
 	}
 	public String login(String email,String password) throws Exception
 	{
-		int uId=0;
-		int mId=0;
-		String preLanguage = null;
+		
 		String s=null;
         String str="select * from users where email=? and  password=?" ;
-		String str1="select user_id,pre_language from users where email=?";
-		String str2="select movie_id from movies where movie_language=?";
-        String str3="insert into users_watching_details_movies(watching_id,last_watching_id,user_id)values (watching_id_sq.nextval,?,?)";
-        Connection con=DBConnection.dbConnect(); 
+		  Connection con=DBConnection.dbConnect(); 
 		try
 		(
 
@@ -74,64 +86,23 @@ public class UsersDaoImpl implements UsersDao{
 			s="failure";
 		}
 		}
+		con.close();
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		//get preferable language
-		try(PreparedStatement stmt1= con.prepareStatement(str1))
-		{
-		stmt1.setString(1, email);
-		try(ResultSet rs1=stmt1.executeQuery())
-		{
-		
-		if(rs1.next())
-		{
-			uId=rs1.getInt(1);
-			System.out.println(uId);
-			preLanguage=rs1.getString(2);
-			System.out.println(preLanguage);
-		}
-		//insert user details into a file
-		Path p=Paths.get("register.txt");
-		String content=email+","+uId+"";
-		Files.write(p,content.getBytes());
-		}
-		}catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		try(
-		PreparedStatement stmt2= con.prepareStatement(str2))
-		{
-		stmt2.setString(1, preLanguage);
-		try(ResultSet rs2=stmt2.executeQuery())
-		{
-		
-		if(rs2.next())
-		{
-			mId=rs2.getInt(1);
-			System.out.println(mId);
-		}
-		}
-		}catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		//insert a first movie as a last watching for first login
-		
-		try(PreparedStatement stmt3= con.prepareStatement(str3))
-		{
-		stmt3.setInt(1, mId);
-		stmt3.setInt(2,uId);
-		int rows1 =stmt3.executeUpdate();  
-		}catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} 
-		
+	
 		con.close();
 		return(s);
+	}
+	public String toUpp(String word)throws Exception
+	{
+		 String first=word.substring(0,1);
+		   String f_after=word.substring(1);
+		   String res=first.toUpperCase()+f_after;
+		
+		return(res);
 	}
 
 }

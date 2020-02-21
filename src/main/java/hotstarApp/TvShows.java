@@ -10,11 +10,12 @@ public class TvShows {
 	public String showLanguage;
 	public int showRatings;
 	public Date dateLaunchingIntoHotstar;
+	public String poster;
 	@Override
 	public String toString() {
 		return "TvShows [showId=" + showId + ", showName=" + showName + ", showType=" + showType + ", showLanguage="
 				+ showLanguage + ", showRatings=" + showRatings + ", dateLaunchingIntoHotstar="
-				+ dateLaunchingIntoHotstar + "]";
+				+ dateLaunchingIntoHotstar + ", poster=" + poster + "]";
 	}
 	
 }

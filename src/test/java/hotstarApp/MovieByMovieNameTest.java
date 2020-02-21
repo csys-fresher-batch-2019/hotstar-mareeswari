@@ -17,7 +17,7 @@ public static void main(String[] args) throws Exception {
 
 	logger.debug("********************");
 	List<Movies> l=new ArrayList<Movies>();
-	l=ml.movieByName("m");
+	l=ml.allMoviesListByType("drama");
 	for(Movies mo:l)
 		logger.debug(mo.toString());
 }

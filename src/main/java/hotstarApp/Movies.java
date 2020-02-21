@@ -6,6 +6,12 @@ import java.sql.Date;
 public class Movies {
 	
 	
+	public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
 	public String getVideoUrl() {
 		return videoUrl;
 	}
@@ -21,6 +27,8 @@ public class Movies {
 	public Date movieReleasedDate;
 	public Date dateLaunchingIntoHotstar;
 	public String videoUrl;
+	public String poster;
+	
 	
 	public int getMovieId() {
 		return movieId;
@@ -75,7 +83,7 @@ public class Movies {
 		return "Movies [movieId=" + movieId + ", movieName=" + movieName + ", movieType=" + movieType
 				+ ", movieLanguage=" + movieLanguage + ", movieRatings=" + movieRatings + ", movieDirector="
 				+ movieDirector + ", movieReleasedDate=" + movieReleasedDate + ", dateLaunchingIntoHotstar="
-				+ dateLaunchingIntoHotstar + ", videoUrl=" + videoUrl + "]";
+				+ dateLaunchingIntoHotstar + ", videoUrl=" + videoUrl + ", poster=" + poster + "]";
 	}
 
 }

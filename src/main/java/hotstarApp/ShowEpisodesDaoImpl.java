@@ -38,6 +38,7 @@ public class ShowEpisodesDaoImpl implements ShowEpisodesDao {
 	    	l.add(nm);
 	    }
 		}
+		con.close();
          }catch (Exception e) {
 			// TODO: handle exception
         	 e.printStackTrace();
@@ -65,6 +66,7 @@ public class ShowEpisodesDaoImpl implements ShowEpisodesDao {
          }
 	   
 		}
+		con.close();
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -102,5 +104,38 @@ public class ShowEpisodesDaoImpl implements ShowEpisodesDao {
 		
 		
 		}
+
+	@Override
+	public List<ShowEpisodes> showEpisodess(int showId) throws Exception {
+		 List<ShowEpisodes> l=new ArrayList<ShowEpisodes>();
+
+         try( Connection con=DBConnection.dbConnect(); 
+		
+		PreparedStatement stmt=con.prepareStatement("select * from show_episodes where show_id =?  "))
+         {
+        	 stmt.setInt(1, showId);
+         
+		try(ResultSet rs=stmt.executeQuery())
+		{
+
+	    while(rs.next())  
+	    {
+	    	ShowEpisodes se=new ShowEpisodes();
+	    	se.showId=rs.getInt(2);
+	    	
+	    	se.episodeId=rs.getInt(1);
+	    	se.episodeNo=rs.getInt(3);
+	    	se.episodeDate=rs.getDate(4);
+	    	se.videoUrl=rs.getString(5);
+	    	l.add(se);
+	    }
+		}
+		con.close();
+         }catch (Exception e) {
+			// TODO: handle exception
+        	 e.printStackTrace();
+		}
+		return(l);
+	}
 
 }

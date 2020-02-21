@@ -20,6 +20,13 @@ public static void main(String[] args) throws Exception {
 		logger.debug(m.toString());
 	}
 	
+	List<ShowEpisodes> l1=new ArrayList<ShowEpisodes>();
+	l1=tl.showEpisodess(131);
+	for(ShowEpisodes m:l1)
+	{
+		logger.debug(m.toString());
+	}
+	
 	
 	
 	

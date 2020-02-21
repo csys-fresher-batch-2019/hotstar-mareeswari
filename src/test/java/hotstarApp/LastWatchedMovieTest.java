@@ -11,13 +11,13 @@ public class LastWatchedMovieTest {
 
 public static void main(String[] args) throws Exception {
 	LastWatchingDao li=DAOFactory.getLastWatchingDao();
-	UsersDaoImpl ui=new UsersDaoImpl();
+	UsersDao ui=DAOFactory.getUsersDao();
 	Movies mo=new Movies();
 	Scanner sc=new Scanner(System.in);
 	
-	String user[]=ui.getUserDetails();
+	Users u=ui.getUserDetails("maha@gmail.com");
 	
-	mo=li.lastWatchedMovie(user[0]);
+	mo=li.lastWatchedMovie(u.email);
      logger.debug(mo.toString());
 	sc.close();
 	

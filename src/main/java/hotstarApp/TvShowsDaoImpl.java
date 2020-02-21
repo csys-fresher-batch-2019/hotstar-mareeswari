@@ -31,10 +31,11 @@ try(Connection con=DBConnection.dbConnect();
 	    	ts.showLanguage=rs.getString(4);
 	    	ts.showType=rs.getString(5);
 	    	ts.showRatings=rs.getInt(6);
-	    	
+	    	ts.poster=rs.getString(7);
 	    	l.add(ts);
 	    }
 		}
+		con.close();
 }catch (Exception e) {
 	// TODO: handle exception
 	e.printStackTrace();

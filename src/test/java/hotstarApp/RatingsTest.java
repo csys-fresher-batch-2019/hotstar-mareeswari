@@ -11,8 +11,8 @@ public class RatingsTest {
 	public static void main(String[] args) throws Exception {
 		RatingsDao ri=DAOFactory.getRatingsDao();
 		UsersDao ui=DAOFactory.getUsersDao();
-		String user[]=ui.getUserDetails();
-		int uId =Integer.parseInt(user[1]);
+		Users u=ui.getUserDetails("maha@gmail.com");
+		int uId =u.userId;
 
 		ri.putRatings(uId,36, 5);
 	}

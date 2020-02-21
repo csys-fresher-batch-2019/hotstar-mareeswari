@@ -32,6 +32,7 @@ public class RatingsDaoImpl implements RatingsDao {
 		
 		int rows1=stmt1.executeUpdate();
 		}
+		con.close();
 		}
 		catch (Exception e) {
 			// TODO: handle exception

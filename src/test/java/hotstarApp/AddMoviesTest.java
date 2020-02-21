@@ -30,6 +30,10 @@ public static void main(String[] args) throws Exception {
 		m.setMovieReleasedDate(Date.valueOf(sc.nextLine()));
 	    logger.debug("Enter movie video url:");
 		m.setVideoUrl(sc.nextLine());
+		logger.debug("Enter poster url:");
+		m.setPoster(sc.nextLine());
+	
+	
 		mi.addMovies(m);
 		
 	}

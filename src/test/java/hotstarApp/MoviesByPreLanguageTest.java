@@ -17,13 +17,18 @@ public class MoviesByPreLanguageTest {
 		logger.debug("********************");
 		UsersDao ui=DAOFactory.getUsersDao();
 		List<Movies> l1=new ArrayList<Movies>();
-		String user[]=ui.getUserDetails();
-		l1=ml.allMoviesByPreLang(Integer.parseInt(user[1]));
+		Users u=ui.getUserDetails("maha@gmail.com");
+		l1=ml.allMoviesByPreLang(u.email);
 		for(Movies m:l1)
 		{
 			logger.debug(m.toString());
 		}
-		
+		List<String> l2=new ArrayList<String>();
+		l2=ml.movieLanguageList();
+		for(String language:l2)
+		{
+			System.out.println(language);
+		}
 	}
 
 }

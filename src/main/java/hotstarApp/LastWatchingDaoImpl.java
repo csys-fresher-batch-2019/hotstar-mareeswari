@@ -35,8 +35,9 @@ public class LastWatchingDaoImpl implements LastWatchingDao {
 		
 
 		}
-		
+		con.close();
 		}
+		
 		catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
