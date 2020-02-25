@@ -3,8 +3,6 @@ package hotstarApp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import hotstarApp.DBConnection;
-
 
 public class RatingsDaoImpl implements RatingsDao {
 
@@ -20,7 +18,7 @@ public class RatingsDaoImpl implements RatingsDao {
 		stmt.setInt(2, movieId);
 		
 		stmt.setInt(3, rating);
-		int rows =stmt.executeUpdate(); 
+		stmt.executeUpdate(); 
 		
 		String str1="update movies set movie_ratings =find_min_ratings(?) where movie_id=?";
 		try
@@ -30,7 +28,7 @@ public class RatingsDaoImpl implements RatingsDao {
 		stmt1.setInt(2,movieId);
 		
 		
-		int rows1=stmt1.executeUpdate();
+		stmt1.executeUpdate();
 		}
 		con.close();
 		}

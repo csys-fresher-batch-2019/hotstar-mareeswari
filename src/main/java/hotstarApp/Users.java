@@ -6,6 +6,7 @@ public class Users {
 		return "Users [userId=" + userId + ", userName=" + userName + ", email=" + email + ", phoneNumber="
 				+ phoneNumber + ", preLanguage=" + preLanguage + "]";
 	}
+	
 	public int userId;
 	public String userName;
 	public String email;

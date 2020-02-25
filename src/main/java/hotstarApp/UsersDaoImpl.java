@@ -1,19 +1,14 @@
 package hotstarApp;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class UsersDaoImpl implements UsersDao{
 
 	
-	public void registerNewUser(Users u) throws Exception {
+	public int registerNewUser(Users u) throws Exception {
 		Connection con=DBConnection.dbConnect(); 
         String str="insert into users(user_id,user_name,email,phone_no,pre_language,password) values(user_id_sq.nextval,lower(?),lower(?),?,lower(?),?)" ;
         
@@ -26,7 +21,7 @@ public class UsersDaoImpl implements UsersDao{
 	    int rows =stmt.executeUpdate();  
 		
 		con.close();
-        
+        return(rows);
 		
 	}
 
@@ -79,7 +74,10 @@ public class UsersDaoImpl implements UsersDao{
 		
 		if( rs.next())
 		{
-			s="success";
+			if(rs.getInt("admin")==1)
+				s="admin";
+			else
+				s="user";
 		}
 		else
 		{
@@ -92,7 +90,7 @@ public class UsersDaoImpl implements UsersDao{
 			e.printStackTrace();
 		}
 		//get preferable language
-	
+	    
 		con.close();
 		return(s);
 	}
