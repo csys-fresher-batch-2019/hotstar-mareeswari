@@ -2,19 +2,25 @@ package hotstarApp;
 
 import java.util.Scanner;
 
-import hotstarApp.Movies;
-import hotstarApp.MoviesDaoImpl;
-
-
+import hotstarApp.model.Movies;
+import hotstarApp.service.MoviesService;
+import hotstarApp.util.LoggerUtil;
 
 public class WatchingMovieTest {
-	public static final LoggerUtil logger=LoggerUtil.getInstance();
+	public static final LoggerUtil logger = LoggerUtil.getInstance();
 
-public static void main(String[] args) throws Exception {
-	MoviesDao li=DAOFactory.getMoviesDao();
-	Scanner sc=new Scanner(System.in);
-	Movies m=new Movies();
-	m=li.watchingMovie(sc.nextLine());
-	logger.debug(m);
-}
+	public static void main(String[] args) throws Exception {
+		MoviesService li = new MoviesService();
+		Scanner sc = new Scanner(System.in);
+		Movies m = new Movies();
+		m = li.watchingMovie("majili");
+		logger.debug(m);
+
+		/*
+		 * List<Movies> l=new ArrayList<Movies>(); l=li.movieByName("ha"+"%");
+		 * for(Movies m:l) { logger.debug(m); }
+		 */
+		sc.close();
+
+	}
 }

@@ -3,32 +3,22 @@ package hotstarApp;
 import java.util.ArrayList;
 import java.util.List;
 
-import hotstarApp.Movies;
-import hotstarApp.MoviesDaoImpl;
-
+import hotstarApp.model.Movies;
+import hotstarApp.service.MoviesService;
+import hotstarApp.util.LoggerUtil;
 
 public class AllMoviesListTest {
-	public static final LoggerUtil logger=LoggerUtil.getInstance();
+	public static final LoggerUtil logger = LoggerUtil.getInstance();
 
-	public static void main(String args[]) throws Exception
-	{
-		MoviesDao ml=DAOFactory.getMoviesDao();
-		List<Movies> l=new ArrayList<Movies>();
-		l=ml.allMoviesList();
-		for(Movies m:l)
-		{
+	public static void main(String args[]) throws Exception {
+		MoviesService m1 = new MoviesService();
+		List<Movies> l = new ArrayList<Movies>();
+		// l = m1.allMoviesList();
+		l = m1.moviesListByLanguage("tamil");
+		for (Movies m : l) {
 			logger.debug(m.toString());
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
 
 }

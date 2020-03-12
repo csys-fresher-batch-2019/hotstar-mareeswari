@@ -1,20 +1,18 @@
 package hotstarApp;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-
-import hotstarApp.RatingsDaoImpl;
+import hotstarApp.dao.UsersDao;
+import hotstarApp.daofactory.DAOFactory;
+import hotstarApp.model.Users;
+import hotstarApp.service.RatingsService;
 
 public class RatingsTest {
 	public static void main(String[] args) throws Exception {
-		RatingsDao ri=DAOFactory.getRatingsDao();
-		UsersDao ui=DAOFactory.getUsersDao();
-		Users u=ui.getUserDetails("maha@gmail.com");
-		int uId =u.userId;
+		RatingsService ri = new RatingsService();
+		UsersDao ui = DAOFactory.getUsersDao();
+		Users u = ui.getUserDetails("maha@gmail.com");
+		int uId = u.getUserId();
 
-		ri.putRatings(uId,36, 5);
+		ri.putRatings(uId, 36, 5);
 	}
 
 }
