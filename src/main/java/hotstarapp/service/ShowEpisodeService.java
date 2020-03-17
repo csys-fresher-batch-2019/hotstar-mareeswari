@@ -1,17 +1,17 @@
-package hotstarApp.service;
+package hotstarapp.service;
 
 import java.util.HashMap;
 import java.util.List;
 
-import hotstarApp.dao.ShowEpisodesDao;
-import hotstarApp.daofactory.DAOFactory;
-import hotstarApp.dto.NameEpisode;
-import hotstarApp.model.ShowEpisodes;
-import hotstarApp.validation.DbException;
+import hotstarapp.dao.ShowEpisodeDAO;
+import hotstarapp.daofactory.DAOFactory;
+import hotstarapp.dto.NameEpisode;
+import hotstarapp.exception.DbException;
+import hotstarapp.model.ShowEpisode;
 
-public class ShowEpisodesService {
+public class ShowEpisodeService {
 	
-	ShowEpisodesDao showEpisodesDao=DAOFactory.getShowEpisodesDao();
+	ShowEpisodeDAO showEpisodesDao=DAOFactory.getShowEpisodesDao();
 	public List<NameEpisode> allShowNameAndEpisodes() throws DbException
 	{
 		return(showEpisodesDao.allShowNameAndEpisodes());
@@ -27,7 +27,7 @@ public class ShowEpisodesService {
 		return(showEpisodesDao.allShowNameAndEpisodesCount());
 	}
 
-	public List<ShowEpisodes> showEpisodess(int showId) throws DbException
+	public List<ShowEpisode> showEpisodess(int showId) throws DbException
 	{
 		return(showEpisodesDao.showEpisodess(showId));
 	}

@@ -1,9 +1,9 @@
-package hotstarApp.dao;
+package hotstarapp.dao;
 
-import hotstarApp.model.Movies;
-import hotstarApp.validation.DbException;
+import hotstarapp.exception.DbException;
+import hotstarapp.model.Movie;
 
-public interface LastWatchingDao {
-      public Movies lastWatchedMovie(String email) throws DbException;
+public interface LastWatchingDAO {
+      public Movie lastWatchedMovie(String email) throws DbException;
       
 }

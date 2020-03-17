@@ -1,4 +1,4 @@
-package hotstarApp.impl;
+package hotstarapp.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,15 +6,15 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import hotstarApp.dao.UsersDao;
-import hotstarApp.dao.ValidationDao;
-import hotstarApp.daofactory.DAOFactory;
-import hotstarApp.model.Users;
-import hotstarApp.util.ConnectionUtil;
-import hotstarApp.validation.ValidationException;
+import hotstarapp.dao.UserDAO;
+import hotstarapp.dao.ValidationDAO;
+import hotstarapp.daofactory.DAOFactory;
+import hotstarapp.exception.ValidationException;
+import hotstarapp.model.User;
+import hotstarapp.util.ConnectionUtil;
 
-public class ValidationImpl implements ValidationDao {
-	public  boolean validateName(String uname) throws ValidationException, Exception
+public class ValidationDAOImpl implements ValidationDAO {
+	public boolean validateName(String uname) throws ValidationException, Exception
 
 	{
 		boolean userNameCheck1 = false;
@@ -42,11 +42,11 @@ public class ValidationImpl implements ValidationDao {
 			throw new ValidationException("Invalid Email");
 		}
 
-		UsersDao ml = DAOFactory.getUsersDao();
-		List<Users> l = new ArrayList<Users>();
+		UserDAO ml = DAOFactory.getUsersDao();
+		List<User> l = new ArrayList<User>();
 		l = ml.getAllUserDetails();
 		List<String> ls = new ArrayList<String>();
-		for (Users u : l) {
+		for (User u : l) {
 			ls.add(u.getEmail());
 		}
 
@@ -65,7 +65,6 @@ public class ValidationImpl implements ValidationDao {
 	}
 
 	public boolean validatePhoneNo(long phoneNumber) throws ValidationException, Exception {
-		// TODO Auto-generated method stub
 		boolean userNameCheck1 = false;
 		if (String.valueOf(phoneNumber).length() > 10) {
 			throw new ValidationException("Invalid Phone Number");
@@ -96,6 +95,7 @@ public class ValidationImpl implements ValidationDao {
 			return false;
 		}
 	}
+
 	public String login(String email, String password) throws Exception, ValidationException {
 
 		String s = null;
@@ -103,7 +103,7 @@ public class ValidationImpl implements ValidationDao {
 		Connection con = ConnectionUtil.dbConnect();
 		try (
 
-			PreparedStatement stmt = con.prepareStatement(str)) {
+				PreparedStatement stmt = con.prepareStatement(str)) {
 			stmt.setString(1, email);
 			stmt.setString(2, password);
 			try (ResultSet rs = stmt.executeQuery()) {

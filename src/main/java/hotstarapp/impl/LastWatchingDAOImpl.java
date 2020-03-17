@@ -1,4 +1,4 @@
-package hotstarApp.impl;
+package hotstarapp.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,15 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-import hotstarApp.dao.LastWatchingDao;
-import hotstarApp.model.Movies;
-import hotstarApp.util.ConnectionUtil;
-import hotstarApp.validation.DbException;
+import hotstarapp.dao.LastWatchingDAO;
+import hotstarapp.exception.DbException;
+import hotstarapp.exception.ExceptionMessages;
+import hotstarapp.model.Movie;
+import hotstarapp.util.ConnectionUtil;
 
-public class LastWatchingImpl implements LastWatchingDao {
+public class LastWatchingDAOImpl implements LastWatchingDAO {
 
-	public Movies lastWatchedMovie(String email) throws DbException {
-		Movies mo = new Movies();
+	public Movie lastWatchedMovie(String email) throws DbException {
+		Movie movie = new Movie();
 		String str = "select * from movies where movie_id=(select last_watching_id from users_watching_details_movies where user_id=(select user_id from users where email=?)) ";
 
 		try (Connection con = ConnectionUtil.dbConnect(); PreparedStatement stmt = con.prepareStatement(str)) {
@@ -24,32 +25,29 @@ public class LastWatchingImpl implements LastWatchingDao {
 
 				if (rs.next()) {
 
-					mo.setMovieId(rs.getInt(1));
-					mo.setMovieName (rs.getString(2));
-					mo.setMovieType ( rs.getString(3));
-					mo.setMovieLanguage ( rs.getString(4));
-					mo.setMovieRatings (rs.getInt(5));
-					mo.setMovieDirector (rs.getString(6));
-					mo.setMovieReleasedDate (LocalDate.parse(rs.getDate(7)+""));
-					mo.setDateLaunchingIntoHotstar ( LocalDate.parse(rs.getDate(8)+""));
-					mo.setVideoUrl( rs.getString(9));
-					mo.setPoster ( rs.getString(10));
+					movie.setMovieId(rs.getInt(1));
+					movie.setMovieName (rs.getString(2));
+					movie.setMovieType ( rs.getString(3));
+					movie.setMovieLanguage ( rs.getString(4));
+					movie.setMovieRatings (rs.getInt(5));
+					movie.setMovieDirector (rs.getString(6));
+					movie.setMovieReleasedDate (LocalDate.parse(rs.getDate(7)+""));
+					movie.setDateLaunchingIntoHotstar ( LocalDate.parse(rs.getDate(8)+""));
+					movie.setVideoUrl( rs.getString(9));
+					movie.setPoster ( rs.getString(10));
 
 				}
 
 			}
 			catch (SQLException e) {
-				// TODO: handle exception
-				throw new DbException("Invalid Select");
+				throw new DbException(ExceptionMessages.INVALID_SELECT);
 			}
-			con.close();
 		}
 
 		catch (Exception e) {
-			// TODO: handle exception
-			throw new DbException("DB Connection Error");
+			throw new DbException(ExceptionMessages.CONNECTION_ERROR);
 		}
-		return (mo);
+		return (movie);
 
 	}
 

@@ -1,8 +1,8 @@
-package hotstarApp.model;
+package hotstarapp.model;
 
 import java.util.Date;
 
-public class ShowEpisodes {
+public class ShowEpisode {
 
 	private int episodeId;
 	private int showId;

@@ -1,4 +1,4 @@
-package hotstarApp.impl;
+package hotstarapp.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,14 +7,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import hotstarApp.dao.UsersDao;
-import hotstarApp.model.Users;
-import hotstarApp.util.ConnectionUtil;
-import hotstarApp.validation.DbException;
+import hotstarapp.dao.UserDAO;
+import hotstarapp.exception.DbException;
+import hotstarapp.exception.ExceptionMessages;
+import hotstarapp.model.User;
+import hotstarapp.util.ConnectionUtil;
 
-public class UsersImpl implements UsersDao {
+public class UserDAOImpl implements UserDAO {
 
-	public int registerNewUser(Users u) throws DbException {
+	public int registerNewUser(User u) throws DbException {
 		int rows=0;
 		Connection con=null;
 		String str = "insert into users(user_id,user_name,email,phone_no,pre_language,password) values(user_id_sq.nextval,lower(?),lower(?),?,lower(?),?)";
@@ -35,11 +36,11 @@ public class UsersImpl implements UsersDao {
 		
 		}catch (SQLException e) {
 			// TODO: handle exception
-			throw new DbException("Unable to register");
+			throw new DbException("Unable to Save");
 			
 		}catch (Exception e) {
 			// TODO: handle exception
-			throw new DbException("DB Connection Error");
+			throw new DbException(ExceptionMessages.CONNECTION_ERROR);
 		}
 			
 		
@@ -48,10 +49,10 @@ public class UsersImpl implements UsersDao {
 
 	}
 
-	public Users getUserDetails(String email) throws DbException {
+	public User getUserDetails(String email) throws DbException {
 		String str = "select * from users where email=? ";
 		
-		Users u = new Users();
+		User u = new User();
 		try (
 				Connection con = ConnectionUtil.dbConnect();
 				PreparedStatement stmt = con.prepareStatement(str)) {
@@ -71,12 +72,12 @@ public class UsersImpl implements UsersDao {
 			}
 			catch (SQLException e) {
 				// TODO: handle exception
-				throw new DbException("Invalid Select");
+				throw new DbException(ExceptionMessages.INVALID_SELECT);
 			}
 			con.close();
 		} catch (SQLException e) {
 			// TODO: handle exception
-			throw new DbException("DB Connection Error");
+			throw new DbException(ExceptionMessages.CONNECTION_ERROR);
 		}
 		return u;
 	}
@@ -122,10 +123,10 @@ public class UsersImpl implements UsersDao {
 		return (res);
 	}
 
-	public List<Users> getAllUserDetails() throws DbException {
+	public List<User> getAllUserDetails() throws DbException {
 		String str = "select * from users ";
 		
-		List<Users> l = new ArrayList<Users>();
+		List<User> l = new ArrayList<User>();
 		try (
 				Connection con = ConnectionUtil.dbConnect();
 				PreparedStatement stmt = con.prepareStatement(str)) {
@@ -133,7 +134,7 @@ public class UsersImpl implements UsersDao {
 			try (ResultSet rs = stmt.executeQuery()) {
 
 				while (rs.next()) {
-					Users u = new Users();
+					User u = new User();
 					u.setUserId(rs.getInt(1));
 					u.setUserName(rs.getString(2));
 					u.setEmail(rs.getString(3));
@@ -146,13 +147,13 @@ public class UsersImpl implements UsersDao {
 			}
 			catch (SQLException e) {
 				// TODO: handle exception
-				throw new DbException("Invalid Select");
+				throw new DbException(ExceptionMessages.INVALID_SELECT);
 			}
 			
 			con.close();
 		} catch (SQLException e) {
 			// TODO: handle exception
-			throw new DbException("DB Connection Error");
+			throw new DbException(ExceptionMessages.CONNECTION_ERROR);
 		}
 		return l;
 	}

@@ -1,10 +1,10 @@
-package hotstarApp;
+package hotstarapp;
 
 import java.util.Scanner;
 
-import hotstarApp.service.ValidationService;
-import hotstarApp.util.LoggerUtil;
-import hotstarApp.validation.ValidationException;
+import hotstarapp.exception.ValidationException;
+import hotstarapp.service.ValidationService;
+import hotstarapp.util.LoggerUtil;
 
 public class LoginTest {
 	public static final LoggerUtil logger = LoggerUtil.getInstance();

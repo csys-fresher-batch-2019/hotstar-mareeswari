@@ -1,13 +1,13 @@
-package hotstarApp.impl;
+package hotstarapp.impl;
 
 import java.util.List;
 
-import hotstarApp.dao.MoviesDao;
-import hotstarApp.model.Movies;
+import hotstarapp.dao.MovieDAO;
+import hotstarapp.model.Movie;
 
-public class MoviesImpl implements MoviesDao {
+public class MovieDAOImpl implements MovieDAO {
 
-	public List<Movies> allMoviesList() throws Exception {
+	public List<Movie> allMoviesList() throws Exception {
 		return null;
 		/*
 		 * List<Movies> l = new ArrayList<Movies>(); try (Connection con =
@@ -28,7 +28,7 @@ public class MoviesImpl implements MoviesDao {
 		 */
 	}
 
-	public List<Movies> allMoviesListByType(String type) throws Exception {
+	public List<Movie> allMoviesListByType(String type) throws Exception {
 		return null;
 		/*
 		 * List<Movies> l = new ArrayList<Movies>(); try (Connection con =
@@ -50,7 +50,7 @@ public class MoviesImpl implements MoviesDao {
 		 */
 	}
 
-	public List<Movies> allMoviesByPreLang(String email) throws Exception {
+	public List<Movie> allMoviesByPreLang(String email) throws Exception {
 		return null;
 		// TODO Auto-generated method stub
 		/*
@@ -75,7 +75,7 @@ public class MoviesImpl implements MoviesDao {
 		 */
 	}
 
-	public List<Movies> allMoviesByHighRatings() throws Exception {
+	public List<Movie> allMoviesByHighRatings() throws Exception {
 		return null;
 		// TODO Auto-generated method stub
 		/*
@@ -98,7 +98,7 @@ public class MoviesImpl implements MoviesDao {
 		 */
 	}
 
-	public List<Movies> movieByName(String movieName) throws Exception {
+	public List<Movie> movieByName(String movieName) throws Exception {
 		return null;
 		/*
 		 * String str = "select * from movies where movie_name LIKE ? "; List<Movies> l
@@ -121,7 +121,7 @@ public class MoviesImpl implements MoviesDao {
 		 */
 	}
 
-	public int addMovies(Movies m) throws Exception {
+	public int addMovies(Movie m) throws Exception {
 		return 0;
 		// TODO Auto-generated method stub
 		/*
@@ -160,7 +160,7 @@ public class MoviesImpl implements MoviesDao {
 
 	}
 
-	public Movies watchingMovie(String movieName) throws Exception {
+	public Movie watchingMovie(String movieName) throws Exception {
 		return null;
 		/*
 		 * UsersDaoImpl ui = new UsersDaoImpl(); Movies mo = new Movies(); String sql =
@@ -182,7 +182,7 @@ public class MoviesImpl implements MoviesDao {
 	}
 
 	@Override
-	public List<Movies> todayUploads() throws Exception {
+	public List<Movie> todayUploads() throws Exception {
 		return null;
 		// TODO Auto-generated method stub
 		/*
@@ -227,7 +227,7 @@ public class MoviesImpl implements MoviesDao {
 	}
 
 	@Override
-	public List<Movies> moviesListByLanguage(String lang) throws Exception {
+	public List<Movie> moviesListByLanguage(String lang) throws Exception {
 		return null;
 		/*
 		 * String str = "select * from movies where movie_language=?"; List<Movies> l =

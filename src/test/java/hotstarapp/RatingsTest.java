@@ -1,15 +1,15 @@
-package hotstarApp;
+package hotstarapp;
 
-import hotstarApp.dao.UsersDao;
-import hotstarApp.daofactory.DAOFactory;
-import hotstarApp.model.Users;
-import hotstarApp.service.RatingsService;
+import hotstarapp.dao.UserDAO;
+import hotstarapp.daofactory.DAOFactory;
+import hotstarapp.model.User;
+import hotstarapp.service.RatingService;
 
 public class RatingsTest {
 	public static void main(String[] args) throws Exception {
-		RatingsService ri = new RatingsService();
-		UsersDao ui = DAOFactory.getUsersDao();
-		Users u = ui.getUserDetails("maha@gmail.com");
+		RatingService ri = new RatingService();
+		UserDAO ui = DAOFactory.getUsersDao();
+		User u = ui.getUserDetails("maha@gmail.com");
 		int uId = u.getUserId();
 
 		ri.putRatings(uId, 36, 5);

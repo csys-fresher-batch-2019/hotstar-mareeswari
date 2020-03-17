@@ -1,4 +1,4 @@
-package hotstarApp.validation;
+package hotstarapp.exception;
 
 public class ValidationException extends Exception {
 

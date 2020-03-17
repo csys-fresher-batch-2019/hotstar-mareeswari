@@ -1,4 +1,4 @@
-package hotstarApp.util;
+package hotstarapp.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
-import hotstarApp.validation.DbException;
+import hotstarapp.exception.DbException;
 
 public class ConnectionUtil {
 	public static Connection dbConnect() throws DbException {

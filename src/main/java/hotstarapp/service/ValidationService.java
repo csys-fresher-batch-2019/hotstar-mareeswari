@@ -1,11 +1,11 @@
-package hotstarApp.service;
+package hotstarapp.service;
 
-import hotstarApp.dao.ValidationDao;
-import hotstarApp.daofactory.DAOFactory;
-import hotstarApp.validation.ValidationException;
+import hotstarapp.dao.ValidationDAO;
+import hotstarapp.daofactory.DAOFactory;
+import hotstarapp.exception.ValidationException;
 
 public class ValidationService {
-	ValidationDao validationDao=DAOFactory.getValidationDao();
+	ValidationDAO validationDao=DAOFactory.getValidationDao();
 	public boolean validateName(String uname) throws ValidationException, Exception
 	{
 		return(validationDao.validateName(uname));

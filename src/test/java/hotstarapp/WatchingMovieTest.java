@@ -1,18 +1,18 @@
-package hotstarApp;
+package hotstarapp;
 
 import java.util.Scanner;
 
-import hotstarApp.model.Movies;
-import hotstarApp.service.MoviesService;
-import hotstarApp.util.LoggerUtil;
+import hotstarapp.model.Movie;
+import hotstarapp.service.MovieService;
+import hotstarapp.util.LoggerUtil;
 
 public class WatchingMovieTest {
 	public static final LoggerUtil logger = LoggerUtil.getInstance();
 
 	public static void main(String[] args) throws Exception {
-		MoviesService li = new MoviesService();
+		MovieService li = new MovieService();
 		Scanner sc = new Scanner(System.in);
-		Movies m = new Movies();
+		Movie m = new Movie();
 		m = li.watchingMovie("majili");
 		logger.debug(m);
 

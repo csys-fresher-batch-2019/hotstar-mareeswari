@@ -1,8 +1,8 @@
-package hotstarApp.model;
+package hotstarapp.model;
 
 import java.time.LocalDate;
 
-public class TvShows {
+public class TvShow {
 
 	private int showId;
 	private String showName;

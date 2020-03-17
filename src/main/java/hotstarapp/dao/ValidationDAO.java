@@ -1,8 +1,8 @@
-package hotstarApp.dao;
+package hotstarapp.dao;
 
-import hotstarApp.validation.ValidationException;
+import hotstarapp.exception.ValidationException;
 
-public interface ValidationDao {
+public interface ValidationDAO {
 	public boolean validateName(String uname) throws ValidationException, Exception;
 	public boolean validateEmail(String email) throws Exception, ValidationException;
 	public boolean validatePhoneNo(long phoneNumber) throws ValidationException, Exception;

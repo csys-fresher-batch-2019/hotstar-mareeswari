@@ -1,16 +1,16 @@
-package hotstarApp;
+package hotstarapp;
 
 import java.util.HashMap;
 
-import hotstarApp.service.ShowEpisodesService;
-import hotstarApp.util.LoggerUtil;
+import hotstarapp.service.ShowEpisodeService;
+import hotstarapp.util.LoggerUtil;
 
 public class AllShowsAndEpisodesCountTest {
 	public static final LoggerUtil logger = LoggerUtil.getInstance();
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		ShowEpisodesService tl = new ShowEpisodesService();
+		ShowEpisodeService tl = new ShowEpisodeService();
 		logger.debug("\n***************************\n");
 
 		HashMap<String, Integer> h = new HashMap<String, Integer>();

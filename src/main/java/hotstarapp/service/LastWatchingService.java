@@ -1,13 +1,13 @@
-package hotstarApp.service;
+package hotstarapp.service;
 
-import hotstarApp.dao.LastWatchingDao;
-import hotstarApp.daofactory.DAOFactory;
-import hotstarApp.model.Movies;
-import hotstarApp.validation.DbException;
+import hotstarapp.dao.LastWatchingDAO;
+import hotstarapp.daofactory.DAOFactory;
+import hotstarapp.exception.DbException;
+import hotstarapp.model.Movie;
 
 public class LastWatchingService {
-	 LastWatchingDao lastWatchingDao =DAOFactory.getLastWatchingDao();
-	 public Movies lastWatchedMovie(String email) throws DbException
+	 LastWatchingDAO lastWatchingDao =DAOFactory.getLastWatchingDao();
+	 public Movie lastWatchedMovie(String email) throws DbException
 	 {
 		 return(lastWatchingDao.lastWatchedMovie(email));
 	 }

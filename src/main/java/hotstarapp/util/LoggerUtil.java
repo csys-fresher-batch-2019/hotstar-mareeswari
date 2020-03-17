@@ -1,4 +1,4 @@
-package hotstarApp.util;
+package hotstarapp.util;
 
 public class LoggerUtil {
 	public static LoggerUtil getInstance() {

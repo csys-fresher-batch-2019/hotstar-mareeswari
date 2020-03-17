@@ -1,14 +1,15 @@
-package hotstarApp.impl;
+package hotstarapp.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import hotstarApp.dao.RatingsDao;
-import hotstarApp.util.ConnectionUtil;
-import hotstarApp.validation.DbException;
+import hotstarapp.dao.RatingDAO;
+import hotstarapp.exception.DbException;
+import hotstarapp.exception.ExceptionMessages;
+import hotstarapp.util.ConnectionUtil;
 
-public class RatingsImpl implements RatingsDao {
+public class RatingDAOImpl implements RatingDAO {
 
 	public int putRatings(int userId, int movieId, int rating) throws DbException {
 		// TODO Auto-generated method stub
@@ -37,7 +38,7 @@ int rows=0;
 			con.close();
 		} catch (SQLException e) {
 			// TODO: handle exception
-			throw new DbException("update failure");
+			throw new DbException(ExceptionMessages.CONNECTION_ERROR);
 		}
 		return(rows);
 

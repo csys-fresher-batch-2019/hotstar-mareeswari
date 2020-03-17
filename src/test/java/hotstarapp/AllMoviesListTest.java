@@ -1,21 +1,21 @@
-package hotstarApp;
+package hotstarapp;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import hotstarApp.model.Movies;
-import hotstarApp.service.MoviesService;
-import hotstarApp.util.LoggerUtil;
+import hotstarapp.model.Movie;
+import hotstarapp.service.MovieService;
+import hotstarapp.util.LoggerUtil;
 
 public class AllMoviesListTest {
 	public static final LoggerUtil logger = LoggerUtil.getInstance();
 
 	public static void main(String args[]) throws Exception {
-		MoviesService m1 = new MoviesService();
-		List<Movies> l = new ArrayList<Movies>();
+		MovieService m1 = new MovieService();
+		List<Movie> l = new ArrayList<Movie>();
 		// l = m1.allMoviesList();
 		l = m1.moviesListByLanguage("tamil");
-		for (Movies m : l) {
+		for (Movie m : l) {
 			logger.debug(m.toString());
 		}
 

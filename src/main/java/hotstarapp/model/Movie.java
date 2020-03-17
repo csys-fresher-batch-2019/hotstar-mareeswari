@@ -1,8 +1,8 @@
-package hotstarApp.model;
+package hotstarapp.model;
 
 import java.time.LocalDate;
 
-public class Movies {
+public class Movie {
 
 	public String getPoster() {
 		return poster;

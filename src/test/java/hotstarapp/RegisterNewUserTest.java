@@ -1,19 +1,19 @@
-package hotstarApp;
+package hotstarapp;
 
 import java.util.Scanner;
 
 import javax.xml.bind.ValidationException;
 
-import hotstarApp.model.Users;
-import hotstarApp.service.UsersService;
-import hotstarApp.service.ValidationService;
-import hotstarApp.util.LoggerUtil;
+import hotstarapp.model.User;
+import hotstarapp.service.UserService;
+import hotstarapp.service.ValidationService;
+import hotstarapp.util.LoggerUtil;
 
 public class RegisterNewUserTest {
 	public static final LoggerUtil logger = LoggerUtil.getInstance();
 
 	public static void main(String[] args) throws Exception {
-		UsersService u = new UsersService();
+		UserService u = new UserService();
 		ValidationService v = new ValidationService();
 		boolean uname = false;
 		boolean uemail = false;
@@ -22,7 +22,7 @@ public class RegisterNewUserTest {
 
 		Scanner sc = new Scanner(System.in);
 
-		Users u1 = new Users();
+		User u1 = new User();
 
 		logger.debug("Enter user name :(IN SMALL CASE)\n");
 		u1.setUserName( sc.next());

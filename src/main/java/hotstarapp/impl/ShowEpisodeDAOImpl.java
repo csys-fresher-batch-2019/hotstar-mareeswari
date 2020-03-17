@@ -1,4 +1,4 @@
-package hotstarApp.impl;
+package hotstarapp.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import hotstarApp.dao.ShowEpisodesDao;
-import hotstarApp.dto.NameEpisode;
-import hotstarApp.model.ShowEpisodes;
-import hotstarApp.util.ConnectionUtil;
-import hotstarApp.validation.DbException;
+import hotstarapp.dao.ShowEpisodeDAO;
+import hotstarapp.dto.NameEpisode;
+import hotstarapp.exception.DbException;
+import hotstarapp.exception.ExceptionMessages;
+import hotstarapp.model.ShowEpisode;
+import hotstarapp.util.ConnectionUtil;
 
-public class ShowEpisodesImpl implements ShowEpisodesDao {
+public class ShowEpisodeDAOImpl implements ShowEpisodeDAO {
 
 	public List<NameEpisode> allShowNameAndEpisodes() throws DbException {
 
@@ -36,11 +37,10 @@ public class ShowEpisodesImpl implements ShowEpisodesDao {
 					l.add(nm);
 				}
 			} catch (SQLException e) {
-				throw new DbException("Invalid Select");
+				throw new DbException(ExceptionMessages.INVALID_SELECT);
 			}
-			con.close();
 		} catch (SQLException e) {
-			throw new DbException("DB Connection Error");
+			throw new DbException(ExceptionMessages.CONNECTION_ERROR);
 		}
 		return (l);
 
@@ -61,12 +61,12 @@ public class ShowEpisodesImpl implements ShowEpisodesDao {
 				}
 
 			} catch (SQLException e) {
-				throw new DbException("Invalid Select");
+				throw new DbException(ExceptionMessages.INVALID_SELECT);
 			}
 			con.close();
 		} catch (SQLException e) {
 
-			throw new DbException("DB Connection Error");
+			throw new DbException(ExceptionMessages.CONNECTION_ERROR);
 		}
 
 		return count;
@@ -88,10 +88,10 @@ public class ShowEpisodesImpl implements ShowEpisodesDao {
 					l.put(showName, count);
 				}
 			} catch (SQLException e) {
-				throw new DbException("Invalid Select");
+				throw new DbException(ExceptionMessages.INVALID_SELECT);
 			}
 		} catch (SQLException e) {
-			throw new DbException("DB Connection Error");
+			throw new DbException(ExceptionMessages.CONNECTION_ERROR);
 		}
 
 		return (l);
@@ -99,8 +99,8 @@ public class ShowEpisodesImpl implements ShowEpisodesDao {
 	}
 
 	@Override
-	public List<ShowEpisodes> showEpisodess(int showId) throws DbException {
-		List<ShowEpisodes> l = new ArrayList<ShowEpisodes>();
+	public List<ShowEpisode> showEpisodess(int showId) throws DbException {
+		List<ShowEpisode> l = new ArrayList<ShowEpisode>();
 
 		try (Connection con = ConnectionUtil.dbConnect();
 
@@ -110,7 +110,7 @@ public class ShowEpisodesImpl implements ShowEpisodesDao {
 			try (ResultSet rs = stmt.executeQuery()) {
 
 				while (rs.next()) {
-					ShowEpisodes se = new ShowEpisodes();
+					ShowEpisode se = new ShowEpisode();
 					se.setShowId(rs.getInt(2));
 
 					se.setEpisodeId(rs.getInt(1));
@@ -120,11 +120,11 @@ public class ShowEpisodesImpl implements ShowEpisodesDao {
 					l.add(se);
 				}
 			} catch (SQLException e) {
-				throw new DbException("Invalid Select");
+				throw new DbException(ExceptionMessages.INVALID_SELECT);
 			}
 			con.close();
 		} catch (SQLException e) {
-			throw new DbException("DB Connection Error");
+			throw new DbException(ExceptionMessages.CONNECTION_ERROR);
 		}
 		return (l);
 	}

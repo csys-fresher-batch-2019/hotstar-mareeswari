@@ -1,6 +1,6 @@
-package hotstarApp.model;
+package hotstarapp.model;
 
-public class Users {
+public class User {
 	
 
 	private int userId;

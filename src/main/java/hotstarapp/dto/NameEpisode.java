@@ -1,4 +1,4 @@
-package hotstarApp.dto;
+package hotstarapp.dto;
 
 import java.util.Date;
 

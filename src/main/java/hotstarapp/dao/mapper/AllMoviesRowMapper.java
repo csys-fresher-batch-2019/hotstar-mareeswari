@@ -1,4 +1,4 @@
-package hotstarApp.dao.mapper;
+package hotstarapp.dao.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,13 +7,13 @@ import java.time.LocalDate;
 import org.jdbi.v3.core.mapper.RowMapper;
 import org.jdbi.v3.core.statement.StatementContext;
 
-import hotstarApp.model.Movies;
+import hotstarapp.model.Movie;
 
-public class AllMoviesRowMapper implements RowMapper<Movies>{
+public class AllMoviesRowMapper implements RowMapper<Movie>{
 
 	@Override
-	public Movies map(ResultSet rs, StatementContext ctx) throws SQLException {
-		Movies mo = new Movies();
+	public Movie map(ResultSet rs, StatementContext ctx) throws SQLException {
+		Movie mo = new Movie();
 		mo.setMovieId(rs.getInt(1));
 		mo.setMovieName (rs.getString(2));
 		mo.setMovieType ( rs.getString(3));

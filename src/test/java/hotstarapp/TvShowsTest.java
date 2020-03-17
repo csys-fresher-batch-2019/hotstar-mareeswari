@@ -1,20 +1,20 @@
-package hotstarApp;
+package hotstarapp;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import hotstarApp.model.TvShows;
-import hotstarApp.service.TvShowsService;
-import hotstarApp.util.LoggerUtil;
+import hotstarapp.model.TvShow;
+import hotstarapp.service.TvShowService;
+import hotstarapp.util.LoggerUtil;
 
 public class TvShowsTest {
 	public static final LoggerUtil logger = LoggerUtil.getInstance();
 
 	public static void main(String[] args) throws Exception {
-		TvShowsService tl = new TvShowsService();
-		List<TvShows> l = new ArrayList<TvShows>();
+		TvShowService tl = new TvShowService();
+		List<TvShow> l = new ArrayList<TvShow>();
 		l = tl.allTvShowsList();
-		for (TvShows m : l) {
+		for (TvShow m : l) {
 			logger.debug(m.toString());
 		}
 

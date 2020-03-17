@@ -1,4 +1,4 @@
-package hotstarApp.impl;
+package hotstarapp.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,22 +8,23 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import hotstarApp.dao.TvShowsDao;
-import hotstarApp.model.TvShows;
-import hotstarApp.util.ConnectionUtil;
-import hotstarApp.validation.DbException;
+import hotstarapp.dao.TvShowDAO;
+import hotstarapp.exception.DbException;
+import hotstarapp.exception.ExceptionMessages;
+import hotstarapp.model.TvShow;
+import hotstarapp.util.ConnectionUtil;
 
-public class TvShowsImpl implements TvShowsDao {
+public class TvShowDAOImpl implements TvShowDAO {
 
-	public List<TvShows> allTvShowsList() throws DbException {
-		List<TvShows> l = new ArrayList<TvShows>();
+	public List<TvShow> allTvShowsList() throws DbException {
+		List<TvShow> l = new ArrayList<TvShow>();
 
 		try (Connection con = ConnectionUtil.dbConnect();
 
 				PreparedStatement stmt = con.prepareStatement("select * from tv_shows")) {
 			try (ResultSet rs = stmt.executeQuery()) {
 				while (rs.next()) {
-					TvShows ts = new TvShows();
+					TvShow ts = new TvShow();
 					ts.setShowId(rs.getInt(1));
 					ts.setShowName(rs.getString(2));
 					ts.setDateLaunchingIntoHotstar(LocalDate.parse(rs.getDate(3)+""));
@@ -36,12 +37,12 @@ public class TvShowsImpl implements TvShowsDao {
 			}
 			catch (SQLException e) {
 				// TODO: handle exception
-				throw new DbException("Invalid Select");
+				throw new DbException(ExceptionMessages.INVALID_SELECT);
 			}
 			con.close();
 		} catch (SQLException e) {
 			// TODO: handle exception
-			throw new DbException("DB Connection Error");
+			throw new DbException(ExceptionMessages.CONNECTION_ERROR);
 		}
 		return (l);
 

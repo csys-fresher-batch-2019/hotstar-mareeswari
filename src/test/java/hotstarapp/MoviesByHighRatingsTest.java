@@ -1,6 +1,6 @@
-package hotstarApp;
+package hotstarapp;
 
-import hotstarApp.util.LoggerUtil;
+import hotstarapp.util.LoggerUtil;
 
 public class MoviesByHighRatingsTest {
 	public static final LoggerUtil logger = LoggerUtil.getInstance();

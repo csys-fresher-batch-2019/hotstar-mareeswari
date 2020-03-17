@@ -1,6 +1,6 @@
-package hotstarApp.validation;
+package hotstarapp.exception;
 
-public class ValidationMessages {
-	public static final String INVALID_SELECT="Invalid Select";
-
+public class ExceptionMessages {
+	public static final String INVALID_SELECT = "Invalid Select";
+	public static final String CONNECTION_ERROR = "DB Connection Error";
 }

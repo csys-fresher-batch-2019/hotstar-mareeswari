@@ -1,47 +1,47 @@
-package hotstarApp.daofactory;
+package hotstarapp.daofactory;
 
-import hotstarApp.dao.LastWatchingDao;
-import hotstarApp.dao.MoviesDao;
-import hotstarApp.dao.RatingsDao;
-import hotstarApp.dao.ShowEpisodesDao;
-import hotstarApp.dao.TvShowsDao;
-import hotstarApp.dao.UsersDao;
-import hotstarApp.dao.ValidationDao;
-import hotstarApp.impl.LastWatchingImpl;
-import hotstarApp.impl.MoviesImpl;
-import hotstarApp.impl.RatingsImpl;
-import hotstarApp.impl.ShowEpisodesImpl;
-import hotstarApp.impl.TvShowsImpl;
-import hotstarApp.impl.UsersImpl;
-import hotstarApp.impl.ValidationImpl;
+import hotstarapp.dao.LastWatchingDAO;
+import hotstarapp.dao.MovieDAO;
+import hotstarapp.dao.RatingDAO;
+import hotstarapp.dao.ShowEpisodeDAO;
+import hotstarapp.dao.TvShowDAO;
+import hotstarapp.dao.UserDAO;
+import hotstarapp.dao.ValidationDAO;
+import hotstarapp.impl.LastWatchingDAOImpl;
+import hotstarapp.impl.MovieDAOImpl;
+import hotstarapp.impl.RatingDAOImpl;
+import hotstarapp.impl.ShowEpisodeDAOImpl;
+import hotstarapp.impl.TvShowDAOImpl;
+import hotstarapp.impl.UserDAOImpl;
+import hotstarapp.impl.ValidationDAOImpl;
 
 public class DAOFactory {
-	public static MoviesDao getMoviesDao() {
-		return (new MoviesImpl());
+	public static MovieDAO getMoviesDao() {
+		return (new MovieDAOImpl());
 	}
 
-	public static LastWatchingDao getLastWatchingDao() {
-		return (new LastWatchingImpl());
+	public static LastWatchingDAO getLastWatchingDao() {
+		return (new LastWatchingDAOImpl());
 	}
 
-	public static RatingsDao getRatingsDao() {
-		return (new RatingsImpl());
+	public static RatingDAO getRatingsDao() {
+		return (new RatingDAOImpl());
 	}
 
-	public static ShowEpisodesDao getShowEpisodesDao() {
-		return (new ShowEpisodesImpl());
+	public static ShowEpisodeDAO getShowEpisodesDao() {
+		return (new ShowEpisodeDAOImpl());
 	}
 
-	public static TvShowsDao getTvShowsDao() {
-		return (new TvShowsImpl());
+	public static TvShowDAO getTvShowsDao() {
+		return (new TvShowDAOImpl());
 	}
 
-	public static UsersDao getUsersDao() {
-		return (new UsersImpl());
+	public static UserDAO getUsersDao() {
+		return (new UserDAOImpl());
 	}
 
-	public static ValidationDao getValidationDao() {
-		return (new ValidationImpl());
+	public static ValidationDAO getValidationDao() {
+		return (new ValidationDAOImpl());
 	}
 
 }

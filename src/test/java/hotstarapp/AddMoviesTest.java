@@ -1,19 +1,19 @@
-package hotstarApp;
+package hotstarapp;
 
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import hotstarApp.model.Movies;
-import hotstarApp.service.MoviesService;
-import hotstarApp.util.LoggerUtil;
+import hotstarapp.model.Movie;
+import hotstarapp.service.MovieService;
+import hotstarapp.util.LoggerUtil;
 
 public class AddMoviesTest {
 	public static final LoggerUtil logger = LoggerUtil.getInstance();
 
 	public static void main(String[] args) throws Exception {
-		MoviesService mi = new MoviesService();
+		MovieService mi = new MovieService();
 		Scanner sc = new Scanner(System.in);
-		Movies m = new Movies();
+		Movie m = new Movie();
 		logger.debug("Enter movie name:");
 		m.setMovieName(sc.nextLine());
 		logger.debug("Enter movie type:");
